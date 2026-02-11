@@ -5,7 +5,7 @@ from strands import tool
 import argparse
 
 parser = argparse.ArgumentParser(
-        description="Script that adds 3 numbers from CMD"
+        description="Some Script"
     )
 parser.add_argument("--query", required=True, type=str)
 
@@ -14,7 +14,7 @@ if args:
     query = args.query
 
 streamable_http_mcp_client = MCPClient(
-    lambda: streamablehttp_client("http://localhost:8000/mcp")
+    lambda: streamablehttp_client("http://localhost:8003/mcp")
 )
 
 @tool

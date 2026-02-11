@@ -3,7 +3,7 @@ from strands import Agent
 from strands.tools.mcp import MCPClient
 
 streamable_http_mcp_client = MCPClient(
-    lambda: streamablehttp_client("http://localhost:8000/mcp")
+    lambda: streamablehttp_client("http://localhost:8003/mcp")
 )
 
 with streamable_http_mcp_client:
