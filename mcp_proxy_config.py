@@ -15,6 +15,10 @@ config = {
             "url": "http://localhost:8002/mcp",
             "transport": "http"
         },
+        "llm_sampling_api": {
+            "url": "http://localhost:8007/mcp",
+            "transport": "http"
+        },
     }
 }
 
