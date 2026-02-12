@@ -1,9 +1,6 @@
 from fastmcp import FastMCP
 from fastmcp.server.proxy import ProxyClient
 
-backend = ProxyClient("http://localhost:8001/mcp",
-                       sampling_handler=None)
-
 # Define your backend servers
 config = {
     "mcpServers": {        
@@ -11,20 +8,20 @@ config = {
             "url": "http://localhost:8001/mcp",
             "transport": "http"
         },
-        "weather_api": {
+        "weather_forecast": {
             "url": "http://localhost:8002/mcp",
             "transport": "http"
         },
-        "llm_sampling_api": {
-            "url": "http://localhost:8007/mcp",
+        "search_fastmcp_docs": {
+            "url": "https://gofastmcp.com/mcp",
             "transport": "http"
-        },
-    }
+        }        
+     }
 }
 
 remote_proxy = FastMCP.as_proxy(
     config,
-    name="Proxy Server"
+    name="Proxy Server for Forex & Weather MCP Servers"
 )
 
 if __name__ == "__main__":

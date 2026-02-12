@@ -2,8 +2,15 @@ from fastmcp import FastMCP, Context
 from fastmcp.client.sampling.handlers.openai import OpenAISamplingHandler
 from openai import OpenAI
 from dotenv import load_dotenv
+from dataclasses import dataclass
 
 load_dotenv()
+
+@dataclass
+class UserInfo:
+    name: str
+    age: int
+
 
 # Initialize the OpenAI client with your key
 #openai_client = OpenAI(api_key=openai_api_key)
@@ -28,20 +35,28 @@ async def generate_smart_filename(content: str, ctx: Context) -> str:
     
     return f"{result.text}"  or "None"
 
-# @mcp.tool()
-# async def write_summary(text: str):
-#     """USe this tool to generate summary of the text or content"""
-#     # This will now work! 
-#     # It tries ADK first, fails, then uses your Gemini API key.
-#     ctx = Context(fastmcp=mcp)
-#     result = await ctx.sample(f"Summarize this: {text}")
-#     return result.text
 
 @mcp.tool
 async def summarize(content: str, ctx: Context) -> str:
     """Generate a summary of the provided content."""
     result = await ctx.sample(f"Please summarize this:\n\n{content}")
     return result.text or ""
+
+@mcp.tool
+async def collect_user_info(ctx: Context) -> str:
+    """Collect user information through interactive prompts."""
+    result = await ctx.elicit(
+        message="Please provide your information",
+        response_type=UserInfo
+    )
+    
+    if result.action == "accept":
+        user = result.data
+        return f"Hello {user.name}, you are {user.age} years old"
+    elif result.action == "decline":
+        return "Information not provided"
+    else:  # cancel
+        return "Operation cancelled"
 
 if __name__ == "__main__":
     mcp.run(transport="http", 

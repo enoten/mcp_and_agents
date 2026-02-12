@@ -3,7 +3,7 @@ from strands import Agent
 from strands.tools.mcp import MCPClient
 
 streamable_http_mcp_client = MCPClient(
-    lambda: streamablehttp_client("http://localhost:8003/mcp")
+    lambda: streamablehttp_client("http://localhost:8001/mcp")
 )
 
 with streamable_http_mcp_client:
@@ -11,4 +11,4 @@ with streamable_http_mcp_client:
     agent = Agent(tools=tools)
     
     #1. cross currency rate
-    agent("What is cross rate for usd gdp pair?")
+    agent("What is cross rate for usd gbp pair?")

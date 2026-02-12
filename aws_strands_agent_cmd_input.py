@@ -13,8 +13,11 @@ args = parser.parse_args()
 if args:
     query = args.query
 
+tunnel_url = "https://nonrepresentational-anne-tantalizingly.ngrok-free.dev"
+
 streamable_http_mcp_client = MCPClient(
-    lambda: streamablehttp_client("http://localhost:8003/mcp")
+    #lambda: streamablehttp_client("http://localhost:8003/mcp")
+    lambda: streamablehttp_client(tunnel_url)
 )
 
 @tool

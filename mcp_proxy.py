@@ -6,7 +6,7 @@ backend = ProxyClient("http://localhost:8001/mcp",
 
 remote_proxy = FastMCP.as_proxy(
     backend,
-    name="Proxy Server"
+    name="Proxy Server for Forex MCP Server"
 )
 
 # Run locally via stdio for Claude Desktop
