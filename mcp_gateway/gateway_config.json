@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "forex_api": {
+      "url": "http://localhost:8001/mcp",
+      "transport": "http"
+    },
+    "weather_forecast": {
+      "url": "http://localhost:8002/mcp",
+      "transport": "http"
+    },
+    "search_fastmcp_docs": {
+      "url": "https://gofastmcp.com/mcp",
+      "transport": "http"
+    }
+  }
+}
