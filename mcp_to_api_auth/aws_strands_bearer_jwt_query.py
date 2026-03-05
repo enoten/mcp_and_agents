@@ -80,8 +80,11 @@ if __name__ == "__main__":
     if not MCP_JWT_SECRET:
         print("ERROR: MCP_JWT_SECRET not set. Add to mcp_auth/.env", file=sys.stderr)
         sys.exit(1)
-    print(f"Connecting to MCP server at {MCP_SERVER_URL}")
-    print("Ensure the server is running: python mcp_server_bearer_token_jwt.py")
+    #print(f"Connecting to MCP server at {MCP_SERVER_URL}")
+    #print("Ensure the server is running: python mcp_server_bearer_token_jwt.py")
+
+    if len(sys.argv) >= 1:
+        query = sys.argv[1]
 
     try:
         with streamable_http_mcp_client:
@@ -89,6 +92,8 @@ if __name__ == "__main__":
             agent = Agent(tools=tools)
 
             # Call get_private_data via natural language (agent will select the tool)
+            if query:
+                response = agent(query)
             response = agent("Get the private data for me.")
             print(response)
     except Exception as e:
